@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html ng-app="app">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no, width=device-width">
+		<title>webapp</title>
+		<!--这里必须写rel="stylesheet"，否则样式不生效-->
+		<link rel="stylesheet" href="/css/index.css" />
+	</head>
+	<body>
+		<!--只要中止了gulpfile.js文件中的服务器watch功能，就会报错-->
+		<div ui-view></div>
+		<!--另一种写法:<ui-view></ui-view>-->
+		
+		<!-- rem来设置字体大小 -->
+		<script type="text/javascript">
+			// 先获取html元素，对它的字体大小进行设置 设置成屏幕的宽度/10
+			document.getElementsByTagName('html')[0].style.fontSize = window.screen.width / 10 + "px";
+		</script>
+	
+		<!--下面引入的都是build文件夹下的文件 -->
+		<script src="vendor/angular/angular.min.js"></script>
+		
+		<!--通过bower install angular-ui-router安装后引入ui-router.js-->
+		<script src="vendor/angular-ui-router/release/angular-ui-router.min.js"></script>
+		
+		<script src="vendor/angular-cookies/angular-cookies.min.js"></script>
+		
+		<!-- 一定要引入index.js，这是构建生成的js文件，把src文件夹下srcipt文件夹中的所有js文件，通过gulpfile文件中的gulp js指令合并生成build文件夹中的一个index.js -->
+		<script src="js/index.js"></script>
+	</body>
+</html>

@@ -1,0 +1,9 @@
+<div class="bg-w position-info p-r">
+	<!--先在本页面对应的js中暴露一个接口，即pos:"="，然后这个页面才能用pos，
+	并且在调用本页面的主页面中将本来的变量名，即主页面对应的js（positionCtrl.js）中数据请求$scope.position赋值给暴露出的pos变量-->
+	<p><span ng-bind="pos.name"></span><span class="ml c-r" ng-bind="pos.salaryName"></span></p>
+	<p><span ng-bind="pos.cityName"></span><span class="ml" ng-bind="pos.experience"></span><span class="ml" ng-bind="pos.education"></span></p>
+	<p ng-bind="pos.benefit"></p>
+	<!--ng-show控制是否显示，ng-if控制是否存在-->
+	<img ng-show="isLogin" class="p-a" ng-src="{{pos.imageUrl}}" />
+</div>

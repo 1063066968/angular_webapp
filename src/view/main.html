@@ -1,0 +1,23 @@
+<!--这种写法相当于<div ui-view></div>，把它作为标签的一个属性
+	app-head这种写法是防止html会出新的属性，造成冲突，所以前面加了app-用来区分
+	app-然后连接指令名称，如app-head中的head就是指令名
+-->
+
+<!-- 四种方式调用自定义指令:
+	1.restrict值为A时表示属性指令:如<p hello></p>
+	2.restrict值为E时表示标签指令:如<hello></hello>
+	3.restrict值为C时表示类指令:如<p class="hello"></p>
+	4.restrict值为M时表示注释指令,directive:hello左右各加一个空格,
+	如果要使用注释指令，必须还要加上replace:true 同时原来所有的标签都被替换成模板定义的标签，
+	原来的标签没有了
+-->	
+<!--三个div层，声明了相应的属性，用它们的属性调用对应的指令，
+	指令就是对应的html文件，用来声明指令模板，并在对应的js中编写指令脚本，
+	用来连接html文件和js文件-->
+<div app-head></div>
+<!--这里面的data="list"中的list对应mainCtrl.js中$scope下list的变量-->
+<div app-position-list data="list"></div>
+<div app-foot></div>
+
+<!--在template文件夹下新建head.html等来运用上面的属性，达到声明指令模板的作用
+	并在script文件夹中新建directive指令文件夹，达到编写指令脚本的作用-->

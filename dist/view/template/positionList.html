@@ -1,0 +1,48 @@
+<ul class="position-list bg-w">
+	<!--<li class="item">
+		<img class="logo f-l" src="image/company-3.png" />
+		<h3 class="title">销售</h3>
+		<p class="text">千度(上海)互联网</p>
+		<p class="text">2016-06-01 11:05</p>		
+	</li>-->
+	<!--这里的数据绑定有ng-bind {{}} ng-model
+	区别：如果网不好没加载出来，{{}}会被原样显示出来，
+	而ng-bind没加载出来什么都不显示，在用户体验上，ng-bind更佳，
+	另外，ng-bind会替换掉加载的内容，而{{}}不会，会增加
+	ng-model是用于input框的双向数据绑定-->
+	
+	<!--这里一开始是item in list后来为了能够让指令可以复用
+	变成item in data让控制器传值，这里的data是该页面对应的js文件中多定义了一个scope对象中的变量，
+	使它等价于主页面控制器mainCtrl.js中的$scope下的list，要使用的话，只需要将mainCtrl.js对应的页面
+	即main.html中增加一个data="list"属性，把值映射到控制器上-->
+	
+	<!--ui-sref专门用来处理点击跳转页面 ，它的值是路由定义的id即position，只写position这个id就会跳转到position页面
+	如果要带参数，要以函数的形式传入一个对象，这个取决于url:"/position/:id"的值-->
+	<!--过滤器filter：在ng-repeat数组后面加一个|，|右边是过滤器名，而左边的值就会作为过滤器回传的第一个参数，即filterByObj.js中return funtion()中的list
+	如ng-repeat="item in data|filterByObj:{id:'p1'}"就会过滤id为p1的数据
+	说明：过滤器的使用
+	1.currency金额过滤，{{1.234 | currency:"":0}}前面是值，中间加|，后面是过滤器的名称currency，如果过滤器要传值，以:相隔，
+	:后面第一个参数是符号如$或￥，符号传什么字符，就显示什么字符，第二个参数是小数点后面要保留的位数，当然currency后面可以什么都不写，
+	那么符号默认为$，小数点后面都保留，如果:后面第一个参数是""，那么符号什么都不会显示
+	2.number数字过滤，{{1.234 | number:2 }}接受的参数是设置小数的位数，并对数据进行了四舍五入，如果不写小数位数，默认保留3位
+	3.date日期过滤，{{1477274943474 | date:"medium"}}第一个参数是毫秒数，date是过滤的格式，当然也可以自己定义日期过滤的格式，
+	{{1477274943474 | date:'yyyy-MM-dd HH:mm:ss'}}就会显示2016-10-24 10:09:03
+	4.lowercase/uppercase大小写字母转换，{{"Abc" | uppercase }}转换大写{{"Abc" | lowercase }}转换小写
+	5.limitTo过滤器，就是截取字符串或者数组的过滤器,接受参数就是截取几位，{{[1,2,3] | limitTo:2}}截取数组中的2个，
+	{{"abdds" | limitTo:3}}截取字符串中的3个，{{12323 | limitTo:1}}截取数字中的1个
+	6.orderby排序过滤器，{{name| orderBy:"age"}}按从小到大排，在age前加-变成从大到小，或者是{{name | orderBy:"age":true}}
+	同样表示从大到小，只需要增加一个参数在后面加上:true即可
+	7.自定义过滤器，在模块下创建一个过滤器("过滤器的名字",回调函数)，回调函数里面又return了一个函数，函数的第一个参数是一个数据，第二个参数是要过滤的对象，
+	经过过滤后，要想有返回值必须return
+	除了在html视图中，可以直接在标签上写|过滤器名如limitTo以外，js中用过滤器的话，后面都要加Filter，如xx.controller("main",["limitToFilter",function(limitToFilter){}])-->
+	<li ui-sref="position({id:item.id})" ng-repeat="item in data|filterByObj:filterObj" class="item">
+		<!--只有ng-src和ng-href是要加{{}}，其他的可以直接写-->
+		<img class="logo f-l" ng-src="{{item.imageUrl}}" />
+		<h3 class="title" ng-bind="item.name"></h3>
+		<p class="text" ng-bind="item.companyName +'['+ item.cityName + ']' + ' ' + item.industryName + ' ' + item.scaleName"></p>
+		<p class="text" ng-bind="item.salaryName"></p>
+		<p class="text" ng-bind="item.date"></p>
+		<div class="clear"></div>
+		<!--这边用了一个浮动，必须要清除-->
+	</li>
+</ul>
