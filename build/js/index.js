@@ -149,6 +149,12 @@ angular.module("app").controller("companyCtrl",["$scope","$http","$state",functi
 //		console.log(event,data);
 //	})
 }])
+angular.module("app").controller("favoriteCtrl",["$scope",function($scope){
+	
+}])
+angular.module("app").controller("loginCtrl",["$scope",function($scope){
+	
+}])
 //在router.js中配置一个路由，路由声明了一个controller，所以这里需要调用，否则会报错
 //引入模块之后，跟一个controller函数，函数第一个参数是它的名字，然后跟$scope服务
 
@@ -192,6 +198,9 @@ angular.module("app").controller('mainCtrl', ['$scope','$http', function($scope,
 		$scope.list = response.data;
 	})
 }])
+angular.module("app").controller("meCtrl",["$scope",function($scope){
+	
+}])
 angular.module("app").controller("positionCtrl",["$q","$scope","$http","$state","cache",function($q,$scope,$http,$state,cache){
 	//调用cache.js写的缓存
 //	cache.put("to","you");
@@ -230,6 +239,21 @@ angular.module("app").controller("positionCtrl",["$q","$scope","$http","$state",
 //这也就是链式调用，通过$q来实现promise思想解决延迟加载对象的服务
 
 
+angular.module("app").controller("postCtrl",["$scope",function($scope){
+	$scope.tabList = [{
+		id:"all",
+		name:"全部"
+	},{
+		id:"pass",
+		name:"面试邀请"
+	},{
+		id:"fail",
+		name:"不合适"
+	}]
+}])
+angular.module("app").controller("registerCtrl",["$scope",function($scope){
+	
+}])
 //第二种引入全局变量的方式，那么这里也要引入dict
 angular.module("app").controller("searchCtrl",["$scope","$http","dict",function($scope,$http,dict){
 	$scope.name = '';
